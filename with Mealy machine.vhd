@@ -1,4 +1,5 @@
-
+Copyright 2022. (Hyeonsu Lee) All rights reserved. 
+  
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 entity Seq_Detector_Mealy is
@@ -11,39 +12,39 @@ entity Seq_Detector_Mealy is
 end Seq_Detector_Mealy;
 
 architecture Behavioral of Seq_Detector_Mealy is
-    type states is (s0,s1,s2,s3);               --ÃÖ¼Ò state °³¼ö°¡ 4°³
-    signal state, next_state : states;             -- state¿Í next state´Â s0, s1, s2, s3ÀÏ ¼ö ÀÖ´Ù.
+    type states is (s0,s1,s2,s3);               --ìµœì†Œ state ê°œìˆ˜ê°€ 4ê°œ
+    signal state, next_state : states;             -- stateì™€ next stateëŠ” s0, s1, s2, s3ì¼ ìˆ˜ ìˆë‹¤.
     
 begin
 --state transition
     process(RESET, CLK)                             
-        begin                                       --state reg´Â sequential logicÀÌ±â ¶§¹®¿¡ clk¿¡ µû¶ó °ª º¯È­
-            if (RESET = '0') then                   --RESETÀº asynchronous, active lowÀÌ±â ¶§¹®¿¡ 
-            state<=s0;                              --CLK¿Í º°°³·Î 0ÀÌ¸é initial »óÅÂ·Î ÃÊ±âÈ­
-            elsif (CLK='1' and CLK'event) then      --RESETÀÌ 1ÀÏ ¶§ CLK »ó½Â ¿§Áö¿¡¼­ 
-            state<= next_state;                     --next state·Î º¯È­
+        begin                                       --state regëŠ” sequential logicì´ê¸° ë•Œë¬¸ì— clkì— ë”°ë¼ ê°’ ë³€í™”
+            if (RESET = '0') then                   --RESETì€ asynchronous, active lowì´ê¸° ë•Œë¬¸ì— 
+            state<=s0;                              --CLKì™€ ë³„ê°œë¡œ 0ì´ë©´ initial ìƒíƒœë¡œ ì´ˆê¸°í™”
+            elsif (CLK='1' and CLK'event) then      --RESETì´ 1ì¼ ë•Œ CLK ìƒìŠ¹ ì—£ì§€ì—ì„œ 
+            state<= next_state;                     --next stateë¡œ ë³€í™”
             end if;
     end process;
     
     --outputs, next state
-    process(X, state)                           --mealy machineÀÇ Ãâ·ÂÀº ÀÔ·Â°ú ÇöÀç state¿¡ µû¶ó ¹Ù²ñ
+    process(X, state)                           --mealy machineì˜ ì¶œë ¥ì€ ì…ë ¥ê³¼ í˜„ì¬ stateì— ë”°ë¼ ë°”ë€œ
     begin
         case state is                           
          when s0 =>
-            if X='0' then next_state<=s0; Z<='0';    --s0ÀÏ ¶§ X°¡ 0ÀÌ¸é next state´Â s0, Ãâ·Â 0
-            else next_state<= s1;Z<='0';             --s0ÀÏ ¶§ X°¡ 1ÀÌ¸é next state´Â s1, Ãâ·Â 0
+            if X='0' then next_state<=s0; Z<='0';    --s0ì¼ ë•Œ Xê°€ 0ì´ë©´ next stateëŠ” s0, ì¶œë ¥ 0
+            else next_state<= s1;Z<='0';             --s0ì¼ ë•Œ Xê°€ 1ì´ë©´ next stateëŠ” s1, ì¶œë ¥ 0
             end if;
          when s1 =>
-            if X='0' then next_state<=s2;Z<='0';   --s1ÀÏ ¶§ X°¡ 0ÀÌ¸é next state´Â s2, Ãâ·Â 0
-            else next_state<= s1;Z<='0';           --s1ÀÏ ¶§ X°¡ 1ÀÌ¸é next state´Â s1, Ãâ·Â 0
+            if X='0' then next_state<=s2;Z<='0';   --s1ì¼ ë•Œ Xê°€ 0ì´ë©´ next stateëŠ” s2, ì¶œë ¥ 0
+            else next_state<= s1;Z<='0';           --s1ì¼ ë•Œ Xê°€ 1ì´ë©´ next stateëŠ” s1, ì¶œë ¥ 0
             end if;
          when s2 =>
-            if X='0' then next_state<=s0;Z<='0';   --s2ÀÏ ¶§ X°¡ 0ÀÌ¸é next state´Â s0, Ãâ·Â 0
-            else next_state<= s3;Z<='0';           --s2ÀÏ ¶§ X°¡ 1ÀÌ¸é next state´Â s3, Ãâ·Â 0
+            if X='0' then next_state<=s0;Z<='0';   --s2ì¼ ë•Œ Xê°€ 0ì´ë©´ next stateëŠ” s0, ì¶œë ¥ 0
+            else next_state<= s3;Z<='0';           --s2ì¼ ë•Œ Xê°€ 1ì´ë©´ next stateëŠ” s3, ì¶œë ¥ 0
             end if;
          when s3 =>
-            if X='0' then next_state<=s2;Z<='1';   --s3ÀÏ ¶§ X°¡ 0ÀÌ¸é next state´Â s2, Ãâ·Â 1
-            else next_state<= s1; Z<='0';          --s3ÀÏ ¶§ X°¡ 1ÀÌ¸é next state´Â s1, Ãâ·Â 0
+            if X='0' then next_state<=s2;Z<='1';   --s3ì¼ ë•Œ Xê°€ 0ì´ë©´ next stateëŠ” s2, ì¶œë ¥ 1
+            else next_state<= s1; Z<='0';          --s3ì¼ ë•Œ Xê°€ 1ì´ë©´ next stateëŠ” s1, ì¶œë ¥ 0
             end if;
          when others => null;
         end case;
