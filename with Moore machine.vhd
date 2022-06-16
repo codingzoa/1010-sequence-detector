@@ -1,4 +1,5 @@
-
+Copyright 2022. (Hyeonsu Lee) All rights reserved. 
+    
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -6,8 +7,8 @@ entity Seq_Detector_Moore_tb is
 end Seq_Detector_Moore_tb;
 
 architecture Behavioral of Seq_Detector_Moore_tb is
-    component Seq_Detector_Moore is         --¼³°èÇÑ ½ÃÄö½º µğÅØÅÍ¸¦ ºÒ·¯¿Í¼­ ½ºÆå¿¡ ¸Â°Ô µ¿ÀÛÇÏ´ÂÁö È®ÀÎ
-    port(                                   --½ÃÄö½º µğÅØÅÍÀÇ ÀÔ·Â°ú Ãâ·Â ±×´ë·Î
+    component Seq_Detector_Moore is         --ì„¤ê³„í•œ ì‹œí€€ìŠ¤ ë””í…í„°ë¥¼ ë¶ˆëŸ¬ì™€ì„œ ìŠ¤í™ì— ë§ê²Œ ë™ì‘í•˜ëŠ”ì§€ í™•ì¸
+    port(                                   --ì‹œí€€ìŠ¤ ë””í…í„°ì˜ ì…ë ¥ê³¼ ì¶œë ¥ ê·¸ëŒ€ë¡œ
     CLK: in std_logic;
     RESET: in std_logic;
     X: in std_logic;
@@ -19,10 +20,10 @@ architecture Behavioral of Seq_Detector_Moore_tb is
     signal X,Z: std_logic;
     
 begin
-    --Å×½ºÆ®º¥Ä¡¿Í ¼³°èÇÑ ½ÃÄö½º µğÅØÅÍÀÇ ÀÔ·Â°ú Ãâ·Â ¿¬°á
+    --í…ŒìŠ¤íŠ¸ë²¤ì¹˜ì™€ ì„¤ê³„í•œ ì‹œí€€ìŠ¤ ë””í…í„°ì˜ ì…ë ¥ê³¼ ì¶œë ¥ ì—°ê²°
     SD: Seq_Detector_Moore port map(CLK=>CLK, RESET=>RESET, X=>X, Z=>Z);
     
-    rst_operation :process  --resetÀÌ 0ÀÏ ¶§ ÃÊ±â »óÅÂ·Î µ¹¾Æ°¡´ÂÁö È®ÀÎÇÏ±â À§ÇÔ
+    rst_operation :process  --resetì´ 0ì¼ ë•Œ ì´ˆê¸° ìƒíƒœë¡œ ëŒì•„ê°€ëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•¨
     begin
     RESET <= '0';
     wait for 15ns;
@@ -34,7 +35,7 @@ begin
     wait;
     end process;
     
-    clk_operation : process    --Å¬¶ôÀ» ÀÎ°¡ÇÏ±â À§ÇÔ
+    clk_operation : process    --í´ë½ì„ ì¸ê°€í•˜ê¸° ìœ„í•¨
     begin
     CLK<='1';
     wait for 5ns;
@@ -42,7 +43,7 @@ begin
     wait for 5ns;
     end process;
     
-    input_operation : process       --Ãâ·ÂÀÌ Àß ³ª¿À´ÂÁö È®ÀÎÇÏ±â À§ÇÑ ÀÔ·Â ÀÎ°¡
+    input_operation : process       --ì¶œë ¥ì´ ì˜ ë‚˜ì˜¤ëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•œ ì…ë ¥ ì¸ê°€
     begin
     X<='1';
     wait for 25ns;
