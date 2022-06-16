@@ -1,4 +1,4 @@
-Copyright 2022. (Hyeonsu Lee) All rights reserved. 
+Copyright 2022. Hyeonsu Lee All rights reserved. 
   
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
